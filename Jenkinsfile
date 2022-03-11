@@ -5,7 +5,7 @@ node {
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
     def SFDC_USERNAME
- //   def jwt_key_file='C:\openssl\bin\server.key"
+    def jwt_key_file='C:\\openssl\\bin\\server.key"
 
     def HUB_ORG=env.HUB_ORG_DH
     def SFDC_HOST = env.SFDC_HOST_DH
@@ -24,7 +24,8 @@ node {
         checkout scm
     }
 
-    withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
+    //withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
+	{
         stage('Deploye Code') {
 	     println SFDC_HOST    
 	     println jwt_key_file	
