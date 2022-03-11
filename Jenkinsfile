@@ -25,13 +25,11 @@ node {
     }
 
     //withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
-	{
+//	{
         stage('Deploye Code') {
 	     println SFDC_HOST    
 	     println jwt_key_file	
-            if (isUnix()) {
-                rc = sh returnStatus: true, script: "${toolbelt}/sfdx auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
-            }else{
+           {
 		    //bat "${toolbelt}/sfdx plugins:install salesforcedx@49.5.0"
 		    bat "${toolbelt}/sfdx update"
 		    //bat "${toolbelt}/sfdx auth:logout -u ${HUB_ORG} -p" 
@@ -49,10 +47,7 @@ node {
 			println rc
 			
 			// need to pull out assigned username
-			if (isUnix()) {
-				//rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
-				rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
-			}else{
+			{
 				rmsg = bat returnStdout: true, script: "${toolbelt}/sfdx force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
 			   //rmsg = bat returnStdout: true, script: "${toolbelt}/sfdx force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}
@@ -61,5 +56,5 @@ node {
             println('Hello from a Job DSL script!')
             println(rmsg)
         }
-    }
+    //}
 }
