@@ -37,5 +37,19 @@
     "**/{aura,lwc}/**": [
       "eslint"
     ]
-  }
+  },
+  "main": "jest.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GHP2021/DevOps.git"
+  },
+  "keywords": [
+    "npmjest"
+  ],
+  "author": "venk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GHP2021/DevOps/issues"
+  },
+  "homepage": "https://github.com/GHP2021/DevOps#readme"
 }
